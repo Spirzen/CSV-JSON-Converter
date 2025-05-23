@@ -1,0 +1,61 @@
+﻿<Window x:Class="CSV_JSON_Converter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CSV-JSON Converter" Height="500" Width="800">
+    <Window.Resources>
+        <!-- Стиль для кнопок -->
+        <Style x:Key="PurpleButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#9370DB" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#8A2BE2" />
+                    <!-- Темно-фиолетовый при наведении -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Загрузить файл -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Загрузить файл:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14" FontWeight="Medium" />
+            <Button Content="Загрузить файл" Click="LoadCsv_Click" Style="{StaticResource PurpleButtonStyle}" Width="150" Height="35" />
+        </StackPanel>
+
+        <!-- Содержимое CSV -->
+        <TextBox x:Name="CsvPreview" Grid.Row="1" Margin="0,0,0,10" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
+                 BorderBrush="#9370DB" BorderThickness="1" />
+
+        <!-- Преобразовать в JSON -->
+        <Button Content="Преобразовать в JSON" Grid.Row="2" Click="ConvertToJson_Click" Style="{StaticResource PurpleButtonStyle}" 
+                Width="200" Height="35" HorizontalAlignment="Center" />
+
+        <!-- Результат в JSON -->
+        <TextBox x:Name="JsonPreview" Grid.Row="3" Margin="0,10,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
+                 BorderBrush="#9370DB" BorderThickness="1" />
+    </Grid>
+</Window>
